@@ -44,13 +44,13 @@ describe("login page", () => {
   it("UC-3: should login with valid credentials", async () => {
     const { usernameInput, passwordInput, loginButton } =
       loginPage.loginComponent;
-    const { titleText } = inventoryPage.headerComponent;
+    const { title } = inventoryPage.headerComponent;
 
     await usernameInput.setValue("standard_user");
     await passwordInput.setValue("secret_sauce");
     await loginButton.click();
 
-    const text = await titleText;
-    expect(text).toContain("Swag Labs");
+    const titleText = await title.getText();
+    expect(titleText).toContain("Swag Labs");
   });
 });

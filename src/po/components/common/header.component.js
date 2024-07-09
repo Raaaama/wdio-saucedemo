@@ -5,7 +5,7 @@ export class HeaderComponent extends BaseComponent {
     super("//div[@data-test='primary-header']");
   }
 
-  get titleText() {
-    return this.rootEl.$("//div[contains(@class, 'app_logo')]").getText();
+  get title() {
+    return this.rootEl.$("//div[contains(@class, 'app_logo')]");
   }
 }
