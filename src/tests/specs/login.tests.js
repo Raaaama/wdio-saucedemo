@@ -2,6 +2,7 @@ import { LoginPage } from "../../po/pages/login.page.js";
 import { InventoryPage } from "../../po/pages/inventory.page.js";
 import loginData from "../data/login.data.js";
 import { logger } from "../../config/logger.js";
+import { clearInput } from "../utils/inputUtils.js";
 
 const loginPage = new LoginPage();
 const inventoryPage = new InventoryPage();
@@ -23,11 +24,11 @@ describe("login page", () => {
 
       if (testCase.id === "UC-1") {
         logger.info("UC-1: Clearing username and password inputs");
-        await usernameInput.clearValue();
-        await passwordInput.clearValue();
+        await clearInput(usernameInput, testCase.username.length);
+        await clearInput(passwordInput, testCase.password.length);
       } else if (testCase.id === "UC-2") {
         logger.info("UC-2: Clearing password input");
-        await passwordInput.clearValue();
+        await clearInput(passwordInput, testCase.password.length);
       }
 
       await loginButton.click();
