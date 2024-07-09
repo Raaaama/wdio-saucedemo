@@ -8,6 +8,7 @@ This project contains solution for the EPAM assignment - automated tests for the
 - Mocha BDD;
 - Parallel execution;
 - Winston logger;
+- Allure reporter;
 - Data Provider for parameterized tests;
 - Test Automation tool: WebDriverIO;
 - Browsers used: Chrome, Edge, Firefox;
