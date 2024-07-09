@@ -51,7 +51,8 @@ Run the tests with the following command:
 │   │   └── pages           # Page objects representing different pages
 │   ├── tests               # Test files directory
 │   │   ├── data            # Data providers for parametrize tests
-│   │   └── specs           # Autotests
+│   │   ├── specs           # Autotests
+│   │   └── utils           # Utilities
 └── ...
 
 ```
