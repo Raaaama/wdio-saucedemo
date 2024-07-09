@@ -4,7 +4,9 @@ This project contains solution for the EPAM assignment - automated tests for the
 
 ## Features
 
-- Parallel execution for faster test runs;
+- Fully configured;
+- Mocha BDD;
+- Parallel execution;
 - Winston logger;
 - Data Provider for parameterized tests;
 - Test Automation tool: WebDriverIO;
