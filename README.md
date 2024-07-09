@@ -31,7 +31,7 @@ Run the tests with the following command:
   npm test
 ```
 
-## Project structure:
+## Project structure
 
 ```
 .
@@ -54,6 +54,8 @@ Run the tests with the following command:
 ```
 
 ## Artifacts
+
+The directories will be created after running the tests
 
 ```
 .
