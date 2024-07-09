@@ -11,5 +11,8 @@
   },
   "scripts": {
     "test": "wdio run src/config/wdio.conf.js"
+  },
+  "dependencies": {
+    "winston": "^3.13.0"
   }
 }

@@ -5,7 +5,7 @@ This project contains solution for the EPAM assignment - automated tests for the
 ## Features
 
 - Parallel execution for faster test runs;
-- Wdio logging for detailed test execution logs;
+- Winston logger;
 - Data Provider for parameterized tests;
 - Test Automation tool: WebDriverIO;
 - Browsers used: Chrome, Edge, Firefox;
@@ -38,7 +38,8 @@ Run the tests with the following command:
 ├── ...
 ├── src                     # Source files
 │   ├── config              # Configuration files
-│   │   └── wdio.conf.js    # Configuration file for WebDriverIO
+│   │   ├── wdio.conf.js    # Configuration file for WebDriverIO
+│   │   └── logges.js       # Winston logger
 │   ├── po                  # Page Object directory
 │   │   ├── components      # Reusable UI components
 │   │   │   ├── common      # Common components
