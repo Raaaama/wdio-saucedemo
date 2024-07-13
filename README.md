@@ -112,4 +112,4 @@ An Allure report is generated with each run. To view the report, use:
 
 During the development of this project, I encountered issues with `clearValue()` and `setValue("")` methods in ChromeDriver. These methods did not behave as expected, particularly in triggering the `onChange` event properly. This inconsistency led to challenges in clearing and setting input values reliably.
 
-To address these issues, I implemented a custom function named "clearInput" located at `src/tests/utils/inputUtils.js`. This function ensures proper clearing of input fields by simulating keypress events, thereby bypassing the shortcomings observed with WebDriverIO's built-in methods.
+To address these issues, I implemented a custom function named `clearInput()` located at `src/tests/utils/inputUtils.js`. This function ensures proper clearing of input fields by simulating keypress events, thereby bypassing the shortcomings observed with WebDriverIO's built-in methods.
