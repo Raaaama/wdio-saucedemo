@@ -6,6 +6,7 @@ import { clearInput } from "../utils/inputUtils.js";
 
 const loginPage = new LoginPage();
 const inventoryPage = new InventoryPage();
+browser.addCommand("clearInput", clearInput, true);
 
 describe("login page", () => {
   beforeEach(async () => {
@@ -24,11 +25,11 @@ describe("login page", () => {
 
       if (testCase.id === "UC-1") {
         logger.info("UC-1: Clearing username and password inputs");
-        await clearInput(usernameInput, testCase.username.length);
-        await clearInput(passwordInput, testCase.password.length);
+        await usernameInput.clearInput();
+        await passwordInput.clearInput();
       } else if (testCase.id === "UC-2") {
         logger.info("UC-2: Clearing password input");
-        await clearInput(passwordInput, testCase.password.length);
+        await passwordInput.clearInput();
       }
 
       await loginButton.click();
