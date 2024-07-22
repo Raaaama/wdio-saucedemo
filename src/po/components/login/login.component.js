@@ -20,4 +20,14 @@ export class LoginComponent extends BaseComponent {
   get errorMessage() {
     return this.rootEl.$("//div[contains(@class, 'error')]");
   }
+
+  async setCredentials(username, password) {
+    await this.usernameInput.setValue(username);
+    await this.passwordInput.setValue(password);
+  }
+
+  async clearInputs() {
+    await this.usernameInput.clearInput();
+    await this.passwordInput.clearInput();
+  }
 }
