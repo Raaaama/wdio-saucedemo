@@ -1,6 +1,6 @@
 import { LoginPage } from "../../po/pages/login.page.js";
 import { InventoryPage } from "../../po/pages/inventory.page.js";
-import loginData from "../data/login.data.js";
+import { usernames, passwords, errorMessages } from "../data/login.data.js";
 import { logger } from "../../config/logger.js";
 import { clearInput } from "../utils/inputUtils.js";
 
@@ -13,42 +13,64 @@ describe("login page", () => {
     await loginPage.open();
   });
 
-  loginData.forEach((testCase) => {
-    it(`${testCase.id}: ${testCase.description}`, async () => {
-      const { usernameInput, passwordInput, loginButton, errorMessage } =
-        loginPage.loginComponent;
+  it("UC-1: should display an error when username is not entered", async () => {
+    const { usernameInput, passwordInput, loginButton, errorMessage } =
+      loginPage.loginComponent;
 
-      logger.info(`Test case: ${testCase.id} - ${testCase.description}`);
+    logger.info("UC-1: Setting username and password inputs");
+    await usernameInput.setValue(usernames.valid);
+    await passwordInput.setValue(passwords.valid);
 
-      await usernameInput.setValue(testCase.username);
-      await passwordInput.setValue(testCase.password);
+    logger.info("UC-1: Clearing username and password inputs");
+    await usernameInput.clearInput();
+    await passwordInput.clearInput();
 
-      if (testCase.id === "UC-1") {
-        logger.info("UC-1: Clearing username and password inputs");
-        await usernameInput.clearInput();
-        await passwordInput.clearInput();
-      } else if (testCase.id === "UC-2") {
-        logger.info("UC-2: Clearing password input");
-        await passwordInput.clearInput();
-      }
+    logger.info("UC-1: Clicking the login button");
+    await loginButton.click();
 
-      await loginButton.click();
+    logger.info("UC-1: Checking for expected error message");
+    await expect(errorMessage).toBeDisplayed();
+    const errorText = await errorMessage.getText();
+    expect(errorText).toContain(errorMessages.usernameRequired);
+    logger.info(`UC-1: Error message verified: ${errorText}`);
+  });
 
-      if (testCase.expectedError) {
-        logger.info("Checking for expected error message");
-        await expect(errorMessage).toBeDisplayed();
-        const errorText = await errorMessage.getText();
-        expect(errorText).toContain(testCase.expectedError);
-        logger.info(`Error message verified: ${errorText}`);
-      } else if (testCase.expectedTitle) {
-        logger.info("Checking for expected title on the inventory page");
-        const { title } = inventoryPage.headerComponent;
-        const titleText = await title.getText();
-        expect(titleText).toContain(testCase.expectedTitle);
-        logger.info(`Title verified: ${titleText}`);
-      }
+  it("UC-2: should display an error when password is not entered", async () => {
+    const { usernameInput, passwordInput, loginButton, errorMessage } =
+      loginPage.loginComponent;
 
-      logger.info(`Test case completed: ${testCase.id}`);
-    });
+    logger.info("UC-2: Setting username and password inputs");
+    await usernameInput.setValue(usernames.valid);
+    await passwordInput.setValue(passwords.valid);
+
+    logger.info("UC-2: Clearing password input");
+    await passwordInput.clearInput();
+
+    logger.info("UC-2: Clicking the login button");
+    await loginButton.click();
+
+    logger.info("UC-2: Checking for expected error message");
+    await expect(errorMessage).toBeDisplayed();
+    const errorText = await errorMessage.getText();
+    expect(errorText).toContain(errorMessages.passwordRequired);
+    logger.info(`UC-2: Error message verified: ${errorText}`);
+  });
+
+  it("UC-3: should login with valid credentials", async () => {
+    const { usernameInput, passwordInput, loginButton } =
+      loginPage.loginComponent;
+
+    logger.info("UC-3: Setting username and password inputs");
+    await usernameInput.setValue(usernames.valid);
+    await passwordInput.setValue(passwords.valid);
+
+    logger.info("UC-3: Clicking the login button");
+    await loginButton.click();
+
+    logger.info("UC-3: Checking for expected title on the inventory page");
+    const { title } = inventoryPage.headerComponent;
+    const titleText = await title.getText();
+    expect(titleText).toContain("Swag Labs");
+    logger.info(`UC-3: Title verified: ${titleText}`);
   });
 });
